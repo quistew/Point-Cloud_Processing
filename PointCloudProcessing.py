@@ -16,13 +16,13 @@ class LasData:
         self.point_cloud = lp.file.File(file, mode='r')
         self.points = np.vstack((self.point_cloud.x, self.point_cloud.y, self.point_cloud.z)).transpose()
 
+
     def get_random_data(self, rand_factor):
         random_subset = self.points[::rand_factor]
         return random_subset
 
-    def get_barycenter_voxel_data(self, voxel_size):
-        # nb_vox = np.ceil((np.max(self.points, axis=0) - np.min(self.points, axis=0)) / voxel_size)
 
+    def get_barycenter_voxel_data(self, voxel_size):
         non_empty_voxel_keys, inverse, nb_pts_per_voxel = np.unique(
             ((self.points - np.min(self.points, axis=0)) // voxel_size).astype(int), axis=0, return_inverse=True,
             return_counts=True)
@@ -38,9 +38,8 @@ class LasData:
             last_seen += nb_pts_per_voxel[idx]
         return grid_barycenter
 
-    def get_candidate_center_voxel_data(self, voxel_size):
-        # nb_vox = np.ceil((np.max(self.points, axis=0) - np.min(self.points, axis=0)) / voxel_size)
 
+    def get_candidate_center_voxel_data(self, voxel_size):
         non_empty_voxel_keys, inverse, nb_pts_per_voxel = np.unique(
             ((self.points - np.min(self.points, axis=0)) // voxel_size).astype(int), axis=0, return_inverse=True,
             return_counts=True)
