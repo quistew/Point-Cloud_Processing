@@ -8,7 +8,7 @@ Barycenter sampling projects a voxel grid onto the dataset, and plots the center
 Candidate center sampling projects this same voxel grid, but plots the closest data point to the center point of the voxel (measured with Euclidean distance).
 
 Beyond this large scale data filtration, we may want to extract small area subsamples (that are high in data concentration) for a precise measurement of geometric transformation across a
-small physical area. In this case, one possibility for subsampling is through generating slices of the array. Unfortunately, this does not give an easy way to utilize specificity to a certain 
+small physical area. In this case, one possibility for subsampling is through generating slices of the array. Example code and images for this process can be found in `Area\ Filtering/Array\ Slicing`. Unfortunately, this does not give an easy way to utilize specificity to a certain 
 geographic area, but this data is not georegistered anyway. It is much simpler than extracting certain voxels, and these voxel grids are projected specifically onto the dataset anyway, so they would
 not necessarily match other datasets (although I plan to look into this concept further). What we do get is a high concentration of data (that we can decide to filter more or less) that can be as
 precise as the initial sampling. 
