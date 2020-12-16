@@ -1,18 +1,20 @@
-Parts of this code are adapted from Florent Poux, _How to automate LiDAR point cloud sub-sampling with Python_, but are rewritten to increase functionality
-for our specific data sets. 
+As we begin to think about mdoeling how this glacier moves, there are two directions which may help us stablize and register our data set.
+The first is to think about general (and continuous) transformation across the entire data set. 
+The second is to look at specific, smaller areas of stable terrain to allow for more precise measurement of geometric transformations.
 
-This program takes a list of .las files and plots subsets using three different methods: random sampling, 
-barycenter of a voxel grid, and candidate center of a voxel grid.
+For both of these methods, we will need to implement large scale filtration of our data set, as found in the `Sample Concentration Filtering` directory.
+Poux introduces 3 different methods: random sampling, barycenter sampling, and candidate center sampling. Random sampling will plot one data point out of a specified random factor.
+Barycenter sampling projects a voxel grid onto the dataset, and plots the center point of each voxel cell.
+Candidate center sampling projects this same voxel grid, but plots the closest data point to the center point of the voxel (measured with Euclidean distance).
 
-Random sampling will plot one out of every (random factor) data points. The other two methods project a voxel grid onto the data set,
-and plot either the barycenter or the closest data point to the barycenter. We can discuss the advantages/disadvantages of each of these three methods 
-and decide how we can use them in our project. 
-
-The `file_list` variable is formatted to plot the three files from the 2018 Blackmore data set, but this can be adapted to any of our .las files.
-Just remember to download the files into the same directory as the python script before running!
-
-I hope to maybe add some more functionality for preprocessing the data, adding colors, etc. sometime soon.
+Beyond this large scale data filtration, we may want to extract small area subsamples (that are high in data concentration) for a precise measurement of geometric transformation across a
+small physical area. In this case, one possibility for subsampling is through generating slices of the array. Unfortunately, this does not give an easy way to utilize specificity to a certain 
+geographic area, but this data is not georegistered anyway. It is much simpler than extracting certain voxels, and these voxel grids are projected specifically onto the dataset anyway, so they would
+not necessarily match other datasets (although I plan to look into this concept further). What we do get is a high concentration of data (that we can decide to filter more or less) that can be as
+precise as the initial sampling. 
 
 As always, feel free to reach out with questions or comments,
 
 Eli
+
+Parts of this code are adpated from Florent Poux, _How to automate LiDAR point cloud sub-sampling with Python_.
