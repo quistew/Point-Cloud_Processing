@@ -1,4 +1,4 @@
-As we begin to think about mdoeling how this glacier moves, there are two directions which may help us stablize and register our data set.
+As we begin to think about modeling how this glacier moves, there are two directions which may help us stablize and register our data set.
 The first is to think about general (and continuous) transformation across the entire data set. 
 The second is to look at specific, smaller areas of stable terrain to allow for more precise measurement of geometric transformations.
 
