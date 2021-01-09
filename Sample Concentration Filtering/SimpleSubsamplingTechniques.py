@@ -2,7 +2,11 @@
 # Eli Quist                         |
 # December 2020                     |
 # ----------------------------------+
-
+# This code is adapted from Florent |
+# Poux, How to automate LiDAR point |
+# cloud sub-sampling with Python    |
+# https://towardsdatascience.com/how-to-automate-lidar-point-cloud-processing-with-python-a027454a536c
+# ----------------------------------+
 
 import numpy as np
 import laspy as lp
