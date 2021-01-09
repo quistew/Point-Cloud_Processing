@@ -5,6 +5,13 @@ from pycpd import RigidRegistration
 import numpy as np
 
 
+# target_file = file that is being transformed
+# source_file = file that is being matched
+# This algorithm takes in two .txt files and matches
+# the point clouds with a Rigid Registration.
+# see las_to_txt.py to generate properly formatted .txt
+# files from a .las file.
+
 def visualize(iteration, error, X, Y, ax):
     plt.cla()
     ax.scatter(X[:, 0],  X[:, 1], X[:, 2], color='red', label='Target')
@@ -17,13 +24,15 @@ def visualize(iteration, error, X, Y, ax):
 
 
 def main():
-    fish_target = np.loadtxt('selection_area_1/2017_target.txt')
-    X = np.zeros((fish_target.shape[0], fish_target.shape[1] + 1))
-    X[:, :-1] = fish_target
+    target_file = '' # put target file name here
+    target = np.loadtxt(target_file)
+    X = np.zeros((target.shape[0], target.shape[1] + 1))
+    X[:, :-1] = target
 
-    fish_source = np.loadtxt('selection_area_1/2018_source.txt')
-    Y = np.zeros((fish_source.shape[0], fish_source.shape[1] + 1))
-    Y[:, :-1] = fish_source
+    source_file = '' # put source file name here
+    source = np.loadtxt(source_file)
+    Y = np.zeros((source.shape[0], source.shape[1] + 1))
+    Y[:, :-1] = source
 
     fig = plt.figure()
     ax = fig.add_subplot(111, projection='3d')
