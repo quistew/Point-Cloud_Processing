@@ -5,6 +5,13 @@ from pycpd import DeformableRegistration
 import numpy as np
 
 
+# target_file = file that is being transformed
+# source_file = file that is being matched
+# This algorithm takes in two .txt files and matches
+# the point clouds with a Deformable Registration.
+# see las_to_txt.py to generate properly formatted .txt
+# files from a .las file.
+
 def visualize(iteration, error, X, Y, ax):
     plt.cla()
     ax.scatter(X[:, 0],  X[:, 1], X[:, 2], color='red', label='Target')
@@ -17,18 +24,20 @@ def visualize(iteration, error, X, Y, ax):
 
 
 def main():
-    fish_target = np.loadtxt('../data/2017_target_qt.txt')
-    X1 = np.zeros((fish_target.shape[0], fish_target.shape[1] + 1))
-    X1[:, :-1] = fish_target
-    X2 = np.ones((fish_target.shape[0], fish_target.shape[1] + 1))
-    X2[:, :-1] = fish_target
+    target_file = '' # put target file name here
+    target = np.loadtxt(target_file)
+    X1 = np.zeros((target.shape[0], target.shape[1] + 1))
+    X1[:, :-1] = target
+    X2 = np.ones((target.shape[0], target.shape[1] + 1))
+    X2[:, :-1] = target
     X = np.vstack((X1, X2))
 
-    fish_source = np.loadtxt('../data/2018_source_qt.txt')
-    Y1 = np.zeros((fish_source.shape[0], fish_source.shape[1] + 1))
-    Y1[:, :-1] = fish_source
-    Y2 = np.ones((fish_source.shape[0], fish_source.shape[1] + 1))
-    Y2[:, :-1] = fish_source
+    source_file = '' # put source file name here
+    source = np.loadtxt(source_file)
+    Y1 = np.zeros((source.shape[0], source.shape[1] + 1))
+    Y1[:, :-1] = source
+    Y2 = np.ones((source.shape[0], source.shape[1] + 1))
+    Y2[:, :-1] = source
     Y = np.vstack((Y1, Y2))
 
     fig = plt.figure()
